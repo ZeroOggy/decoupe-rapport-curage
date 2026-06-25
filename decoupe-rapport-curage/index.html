@@ -16,16 +16,34 @@
 <div class="wrap">
 
   <h1>Découpe de rapport de curage</h1>
-  <p class="sub">Déposez le rapport complet : chaque tronçon est isolé avec ses photos, renommé, et regroupé dans un seul dossier ZIP.</p>
+  <p class="sub">Déposez le rapport complet, et si vous en avez, les plans (<code style="font-family:'JetBrains Mono',monospace">Plan_67.pdf</code>…). Chaque tronçon est isolé avec ses photos, son plan ajouté à la fin, renommé, et regroupé dans un seul ZIP.</p>
 
-  <label id="drop" for="file">
-    <span class="ico">
-      <svg viewBox="0 0 24 24"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-    </span>
-    <span class="big">Glissez le rapport PDF ici</span>
-    <span class="small">ou cliquez pour parcourir — tout reste sur votre machine</span>
-    <input type="file" id="file" accept="application/pdf">
-  </label>
+  <div class="zones">
+    <label class="drop" id="dropReport" for="fileReport">
+      <span class="ico">
+        <svg viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4M5 3h9l5 5v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+      </span>
+      <span class="big">Rapport de curage<span class="tag-req">requis</span></span>
+      <span class="small" id="reportHint">Glissez le PDF du rapport complet</span>
+      <input type="file" id="fileReport" accept="application/pdf">
+      <div class="filelist" id="reportList"></div>
+    </label>
+
+    <label class="drop" id="dropPlans" for="filePlans">
+      <span class="ico">
+        <svg viewBox="0 0 24 24"><path d="M9 20l-5.5-3V4L9 7m0 13l6-3m-6 3V7m6 10l5.5-3V4L15 7m0 10V7m0 0L9 4"/></svg>
+      </span>
+      <span class="big">Plans<span class="tag-opt">optionnel</span></span>
+      <span class="small" id="plansHint">Glissez les Plan_67.pdf, Plan_1-6_10-17.pdf…</span>
+      <input type="file" id="filePlans" accept="application/pdf" multiple>
+      <div class="filelist" id="plansList"></div>
+    </label>
+  </div>
+
+  <div class="runbar">
+    <button class="run" id="runBtn" disabled>Découper le rapport</button>
+    <button class="clear" id="clearBtn" style="display:none">Tout effacer</button>
+  </div>
 
   <div class="progress" id="progress">
     <div class="ptrack"><div class="pfill" id="pfill"></div></div>
@@ -33,6 +51,7 @@
   </div>
 
   <div class="result" id="result">
+    <div class="notice" id="notice"></div>
     <div class="topline">
       <div class="count" id="count"></div>
       <div class="actions" id="actions"></div>
