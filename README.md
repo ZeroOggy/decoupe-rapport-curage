@@ -50,7 +50,3 @@ Les fichiers ne quittent jamais votre machine. Toute l'analyse et la découpe so
 
 - Le format de nom de fichier dépend de la structure attendue du rapport (mentions « Inspection de tronçon - N », « Rue ... Fonction », date au format `JJ.MM.AAAA`). Un rapport structuré différemment peut ne pas être détecté correctement.
 - Testé sur les rapports de curage suivant ce gabarit ; adaptez les expressions régulières dans le script si votre format diffère.
-
-## Licence
-
-À définir (par ex. MIT).
